@@ -77,6 +77,25 @@ function reverse5($string)
 }
 
 /**
+ * IntlBreakIterator can be used since PHP 5.5 (intl 3.0)
+ * @param $str
+ * @return string
+ */
+function reverse6($str)
+{
+    $it = IntlBreakIterator::createCodePointInstance();
+    $it->setText($str);
+    $ret = '';
+    $pos = 0;
+    $prev = 0;
+    foreach ($it as $pos) {
+        $ret = substr($str, $prev, $pos - $prev) . $ret;
+        $prev = $pos;
+    }
+    return $ret;
+}
+
+/**
  * @param $str
  * @param $functionName
  */
@@ -99,6 +118,7 @@ function testMe($str)
     compareStrings($str, 'reverse3');
     compareStrings($str, 'reverse4');
     compareStrings($str, 'reverse5');
+    compareStrings($str, 'reverse6');
     echo "----------------------------" . PHP_EOL;
 }
 

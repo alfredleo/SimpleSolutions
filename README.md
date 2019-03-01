@@ -1,7 +1,11 @@
 # SimpleSolutions
 Simple solutions to some questions in php. They are not so simple...
 
-Stress tests were taken from [what-are-the-most-difficult-to-render-unicode-samples](https://stackoverflow.com/questions/34538413/what-are-the-most-difficult-to-render-unicode-samples)
+Stress tests were taken from [what-are-the-most-difficult-to-render-unicode-samples](https://stackoverflow.com/questions/34538413/what-are-the-most-difficult-to-render-unicode-samples).
+Read more here:
+- (strrev-dosent-support-utf-8)[https://stackoverflow.com/questions/17496493/strrev-dosent-support-utf-8]
+- (how-to-reverse-a-unicode-string)[https://stackoverflow.com/questions/434250/how-to-reverse-a-unicode-string]
+
 
 Tests to run:
 
