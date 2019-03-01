@@ -76,18 +76,33 @@ function reverse5($string)
     return implode(array_reverse($ret));
 }
 
-// testing
+/**
+ * @param $str
+ * @param $functionName
+ */
+function compareStrings($str, $functionName)
+{
+    // do a double reverse
+    $reversed = $functionName($str);
+    $testPass = ($str === $functionName($reversed));
+    echo $reversed . (($testPass) ? ' <b style="color:green">PASS</b>' : ' <b style="color:red">FAIL<b/>') . PHP_EOL;
+}
+
+/**
+ * @param $str
+ */
 function testMe($str)
 {
     echo "--- Testing '$str' ---" . PHP_EOL;
-    echo reverse1($str) . PHP_EOL;
-    echo reverse2($str) . PHP_EOL;
-    echo reverse3($str) . PHP_EOL;
-    echo reverse4($str) . PHP_EOL;
-    echo reverse5($str) . PHP_EOL . PHP_EOL;
+    compareStrings($str, 'reverse1');
+    compareStrings($str, 'reverse2');
+    compareStrings($str, 'reverse3');
+    compareStrings($str, 'reverse4');
+    compareStrings($str, 'reverse5');
+    echo "----------------------------" . PHP_EOL;
 }
 
-
+echo '<pre>';
 testMe('Hello from github');
 testMe('1');
 testMe('ab');
@@ -113,3 +128,4 @@ testMe('🧟‍♀️🧟‍♂️');
 testMe('👭👬⚧⚥⚣⚢⚤');
 echo 'Apple-invented combined emoji:';
 testMe('👨‍❤️‍💋‍👨👩‍👩‍👧‍👦');
+echo '</pre>';
