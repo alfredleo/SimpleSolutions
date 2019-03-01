@@ -133,7 +133,7 @@ testMe('тест по UTF8');
 testMe('اهلا بك');
 testMe('👹👺💀👻');
 testMe("abca\xCC\x8Ao\xCC\x88");
-testMe(json_decode('"' . '\u1000' . '"'));
+testMe("\u{1000}\u{1F7C9}");
 echo 'Vertically-stacked characters:';
 testMe('Z̤͔ͧ̑̓ä͖̭̈̇lͮ̒ͫǧ̗͚̚o̙̔ͮ̇͐̇');
 echo 'Right-to-left words:';

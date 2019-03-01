@@ -7,6 +7,8 @@ Stress tests were taken from [what-are-the-most-difficult-to-render-unicode-samp
 Read more here:
 - [strrev-dosent-support-utf-8](https://stackoverflow.com/questions/17496493/strrev-dosent-support-utf-8)
 - [how-to-reverse-a-unicode-string](https://stackoverflow.com/questions/434250/how-to-reverse-a-unicode-string)
+- [function.grapheme-strstr](http://php.net/manual/en/function.grapheme-strstr.php)
+- [UFT-8 charset](https://www.fileformat.info/info/charset/UTF-8/list.htm?start=30000)
 
 
 Tests to run:
