@@ -8,6 +8,7 @@
  * 2) without any built-in functions
  * 3) you can use only one string in memory on low resources.
  * 4) that works with utf-8 too
+ * 5) with full grapheme support
  */
 
 /**
