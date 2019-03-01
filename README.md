@@ -9,6 +9,7 @@ Read more here:
 - [how-to-reverse-a-unicode-string](https://stackoverflow.com/questions/434250/how-to-reverse-a-unicode-string)
 - [function.grapheme-strstr](http://php.net/manual/en/function.grapheme-strstr.php)
 - [UFT-8 charset](https://www.fileformat.info/info/charset/UTF-8/list.htm?start=30000)
+- [what-every-javascript-developer-should-know-about-unicode](https://dmitripavlutin.com/what-every-javascript-developer-should-know-about-unicode) good explanation of grapheme
 
 
 Tests to run:
