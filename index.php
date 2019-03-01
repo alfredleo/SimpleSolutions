@@ -62,6 +62,8 @@ function reverse4($str)
 }
 
 /**
+ * This function pass all the tests visually if test in real browser.
+ * Set as standard for tests.
  * All other function won't work correct with some grapheme
  * @param $string
  * @return string
@@ -103,8 +105,8 @@ function compareStrings($str, $functionName)
 {
     // do a double reverse
     $reversed = $functionName($str);
-    $testPass = ($str === $functionName($reversed));
-    echo $reversed . (($testPass) ? ' <b style="color:green">PASS</b>' : ' <b style="color:red">FAIL<b/>') . PHP_EOL;
+    $testPass = ($reversed === reverse5($str));
+    echo $reversed . (($testPass) ? ' <b style="color:green">PASS</b>' : ' <b style="color:red">FAIL</b>') . PHP_EOL;
 }
 
 /**
@@ -112,7 +114,7 @@ function compareStrings($str, $functionName)
  */
 function testMe($str)
 {
-    echo "--- Testing '$str' ---" . PHP_EOL;
+    echo "--- Testing: '$str'" . PHP_EOL;
     compareStrings($str, 'reverse1');
     compareStrings($str, 'reverse2');
     compareStrings($str, 'reverse3');

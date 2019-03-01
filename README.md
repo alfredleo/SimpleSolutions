@@ -40,5 +40,5 @@ testMe('👨‍❤️‍💋‍👨👩‍👩‍👧‍👦');
 ```
 ## TODO: 
 
-- Need real tests with double reverse and string comparison.
+- ~~Need real tests with double reverse and string comparison.~~
 - None of the function work well with sex emoji variations.
