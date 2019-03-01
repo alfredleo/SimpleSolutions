@@ -35,7 +35,7 @@ testMe('тест по UTF8');
 testMe('اهلا بك');
 testMe('👹👺💀👻');
 testMe("abca\xCC\x8Ao\xCC\x88");
-testMe(json_decode('"' . '\u1000' . '"'));
+testMe("\u{1000}\u{1F7C9}\u{12043}𒁂\u{12042}\u{12030}\u{12031}");
 echo 'Vertically-stacked characters:';
 testMe('Z̤͔ͧ̑̓ä͖̭̈̇lͮ̒ͫǧ̗͚̚o̙̔ͮ̇͐̇');
 echo 'Right-to-left words:';
