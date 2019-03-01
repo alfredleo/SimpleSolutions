@@ -93,7 +93,4 @@ testMe('ab');
 testMe('тест по UTF8');
 testMe('اهلا بك');
 testMe('👹👺💀👻');
-// http://www.php.net/manual/en/function.grapheme-strlen.php
-$char_a_ring_nfd = "a\xCC\x8A";  // 'LATIN SMALL LETTER A WITH RING ABOVE' (U+00E5) normalization form "D"
-$char_o_diaeresis_nfd = "o\xCC\x88"; // 'LATIN SMALL LETTER O WITH DIAERESIS' (U+00F6) normalization form "D"
-testMe('abc' . $char_a_ring_nfd . $char_o_diaeresis_nfd);
+testMe("abca\xCC\x8Ao\xCC\x88");
