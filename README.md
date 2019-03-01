@@ -14,6 +14,18 @@ Tests to run:
 
 ```php
 <?php
+// winner function to reverse any string in php
+function reverse5($string)
+{
+    $length = grapheme_strlen($string);
+    $ret = [];
+    for ($i = 0; $i < $length; $i += 1) {
+        $ret[] = grapheme_substr($string, $i, 1);
+    }
+    return implode(array_reverse($ret));
+}
+
+
 testMe('Hello from github');
 testMe('1');
 testMe('ab');
