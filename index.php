@@ -110,5 +110,6 @@ echo 'Emoji with skintone variations:';
 testMe('👱👱🏻👱🏼👱🏽👱🏾👱🏿');
 echo 'Emoji with sex variations:';
 testMe('🧟‍♀️🧟‍♂️');
+testMe('👭👬⚧⚥⚣⚢⚤');
 echo 'Apple-invented combined emoji:';
 testMe('👨‍❤️‍💋‍👨👩‍👩‍👧‍👦');
