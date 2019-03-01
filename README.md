@@ -1,5 +1,5 @@
-# SimpleSolutions
-Simple solutions to some questions in php. They are not so simple...
+# PHP support for UTF-8 including emoji. Working with a string.
+Simple solutions are not so simple...
 
 Stress tests were taken from [what-are-the-most-difficult-to-render-unicode-samples](https://stackoverflow.com/questions/34538413/what-are-the-most-difficult-to-render-unicode-samples).
 Read more here:
@@ -41,4 +41,4 @@ testMe('👨‍❤️‍💋‍👨👩‍👩‍👧‍👦');
 ## TODO: 
 
 - ~~Need real tests with double reverse and string comparison.~~
-- None of the function work well with sex emoji variations.
+- ~~None of the function work well with sex emoji variations.~~
