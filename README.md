@@ -1,6 +1,11 @@
 # SimpleSolutions
-Simple solutions to some questions in php.
+Simple solutions to some questions in php. They are not so simple...
+
+Stress tests were taken from [what-are-the-most-difficult-to-render-unicode-samples](https://stackoverflow.com/questions/34538413/what-are-the-most-difficult-to-render-unicode-samples)
+
 Tests to run:
+
+
 ```php
 <?php
 testMe('Hello from github');
@@ -25,6 +30,11 @@ echo 'Emoji with skintone variations:';
 testMe('👱👱🏻👱🏼👱🏽👱🏾👱🏿');
 echo 'Emoji with sex variations:';
 testMe('🧟‍♀️🧟‍♂️');
+testMe('👭👬⚧⚥⚣⚢⚤');
 echo 'Apple-invented combined emoji:';
 testMe('👨‍❤️‍💋‍👨👩‍👩‍👧‍👦');
 ```
+## TODO: 
+
+- Need real tests with double reverse and string comparison.
+- None of the function work well with sex emoji variations.
