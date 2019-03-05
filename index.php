@@ -101,54 +101,55 @@ function reverse6($str)
 /**
  * @param $str
  * @param $functionName
+ * @param $correctReverse
  */
-function compareStrings($str, $functionName)
+function compareStrings($str, $functionName, $correctReverse)
 {
-    // do a double reverse
     $reversed = $functionName($str);
-    $testPass = ($reversed === reverse5($str));
+    $testPass = ($reversed === $correctReverse);
     echo $reversed . (($testPass) ? ' <b style="color:green">PASS</b>' : ' <b style="color:red">FAIL</b>') . PHP_EOL;
 }
 
 /**
  * @param $str
+ * @param $correctReverse
  */
-function testMe($str)
+function testMe($str, $correctReverse)
 {
     echo "--- Testing: '$str'" . PHP_EOL;
-    compareStrings($str, 'reverse1');
-    compareStrings($str, 'reverse2');
-    compareStrings($str, 'reverse3');
-    compareStrings($str, 'reverse4');
-    compareStrings($str, 'reverse5');
-    compareStrings($str, 'reverse6');
+    compareStrings($str, 'reverse1', $correctReverse);
+    compareStrings($str, 'reverse2', $correctReverse);
+    compareStrings($str, 'reverse3', $correctReverse);
+    compareStrings($str, 'reverse4', $correctReverse);
+    compareStrings($str, 'reverse5', $correctReverse);
+    compareStrings($str, 'reverse6', $correctReverse);
     echo "----------------------------" . PHP_EOL;
 }
 
 echo '<pre>';
-testMe('Hello from github');
-testMe('1');
-testMe('ab');
-testMe('тест по UTF8');
-testMe('اهلا بك');
-testMe('👹👺💀👻');
-testMe("abca\xCC\x8Ao\xCC\x88");
-testMe("\u{1000}\u{1F7C9}\u{12043}𒁂\u{12042}\u{12030}\u{12031}\u{10ffff}");
+testMe('Hello from github', 'buhtig morf olleH');
+testMe('1', '1');
+testMe('ab', 'ba');
+testMe('тест по UTF8', '8FTU оп тсет');
+testMe('اهلا بك', 'كب الها');
+testMe('👹👺💀👻', '👻💀👺👹');
+testMe("abca\xCC\x8Ao\xCC\x88",'öåcba');
+testMe("\u{1000}\u{1F7C9}\u{12043}𒁂\u{12042}\u{12030}\u{12031}\u{10ffff}", '􏿿𒀱𒀰𒁂𒁂𒁃🟉က');
 echo 'Vertically-stacked characters:';
-testMe('Z̤͔ͧ̑̓ä͖̭̈̇lͮ̒ͫǧ̗͚̚o̙̔ͮ̇͐̇');
+testMe('Z̤͔ͧ̑̓ä͖̭̈̇lͮ̒ͫǧ̗͚̚o̙̔ͮ̇͐̇', 'o̙̔ͮ̇͐̇ǧ̗͚̚lͮ̒ͫä͖̭̈̇Z̤͔ͧ̑̓');
 echo 'Right-to-left words:';
-testMe('اختبار النص');
+testMe('اختبار النص', 'صنلا رابتخا');
 echo 'Mixed-direction words:';
-testMe('من left اليمين to الى right اليسار');
+testMe('من left اليمين to الى right اليسار', 'راسيلا thgir ىلا ot نيميلا tfel نم');
 echo 'Mixed-direction characters:';
-testMe('a‭b‮c‭d‮e‭f‮g');
+testMe('a‭b‮c‭d‮e‭f‮g', 'g‮f‭e‮d‭c‮b‭a');
 echo 'Very long characters:';
-testMe('﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽');
+testMe('﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽', '﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽');
 echo 'Emoji with skintone variations:';
-testMe('👱👱🏻👱🏼👱🏽👱🏾👱🏿');
+testMe('👱👱🏻👱🏼👱🏽👱🏾👱🏿', '👱🏿👱🏾👱🏽👱🏼👱🏻👱');
 echo 'Emoji with sex variations:';
-testMe('🧟‍♀️🧟‍♂️');
-testMe('👭👬⚧⚥⚣⚢⚤');
+testMe('🧟‍♀️🧟‍♂️', '🧟‍♂️🧟‍♀️');
+testMe('👭👬⚧⚥⚣⚢⚤', '⚤⚢⚣⚥⚧👬👭');
 echo 'Apple-invented combined emoji:';
-testMe('👨‍❤️‍💋‍👨👩‍👩‍👧‍👦');
+testMe('👨‍❤️‍💋‍👨👩‍👩‍👧‍👦', '👩‍👩‍👧‍👦👨‍❤️‍💋‍👨');
 echo '</pre>';
