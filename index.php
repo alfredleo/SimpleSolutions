@@ -1,5 +1,8 @@
 <?php
 
+use Symfony\Polyfill\Intl\Grapheme\Grapheme;
+
+require_once('vendor/autoload.php');
 /**
  * Test online with https://3v4l.org/
  * Create function to reverse a string in php
@@ -99,6 +102,26 @@ function reverse6($str)
 }
 
 /**
+ * Test symfony/polyfill-intl-grapheme library
+ * Fails:
+ *  - Emoji with skintone variations
+ *  - Emoji with sex variations
+ *  - Apple-invented combined emoji
+ *
+ * @param $string
+ * @return string
+ */
+function reverse7($string)
+{
+    $length = Grapheme::grapheme_strlen($string);
+    $ret = [];
+    for ($i = 0; $i < $length; $i += 1) {
+        $ret[] = Grapheme::grapheme_substr($string, $i, 1);
+    }
+    return implode(array_reverse($ret));
+}
+
+/**
  * @param $str
  * @param $functionName
  * @param $correctReverse
@@ -123,17 +146,19 @@ function testMe($str, $correctReverse)
     compareStrings($str, 'reverse4', $correctReverse);
     compareStrings($str, 'reverse5', $correctReverse);
     compareStrings($str, 'reverse6', $correctReverse);
+    compareStrings($str, 'reverse7', $correctReverse);
     echo "----------------------------" . PHP_EOL;
 }
 
 echo '<pre>';
 testMe('Hello from github', 'buhtig morf olleH');
+testMe('', '');
 testMe('1', '1');
 testMe('ab', 'ba');
 testMe('тест по UTF8', '8FTU оп тсет');
 testMe('اهلا بك', 'كب الها');
 testMe('👹👺💀👻', '👻💀👺👹');
-testMe("abca\xCC\x8Ao\xCC\x88",'öåcba');
+testMe("abca\xCC\x8Ao\xCC\x88", 'öåcba');
 testMe("\u{1000}\u{1F7C9}\u{12043}𒁂\u{12042}\u{12030}\u{12031}\u{10ffff}", '􏿿𒀱𒀰𒁂𒁂𒁃🟉က');
 echo 'Vertically-stacked characters:';
 testMe('Z̤͔ͧ̑̓ä͖̭̈̇lͮ̒ͫǧ̗͚̚o̙̔ͮ̇͐̇', 'o̙̔ͮ̇͐̇ǧ̗͚̚lͮ̒ͫä͖̭̈̇Z̤͔ͧ̑̓');
