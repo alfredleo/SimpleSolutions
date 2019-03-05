@@ -30,31 +30,35 @@ function reverse5($string)
 }
 
 
-testMe('Hello from github');
-testMe('1');
-testMe('ab');
-testMe('тест по UTF8');
-testMe('اهلا بك');
-testMe('👹👺💀👻');
-testMe("abca\xCC\x8Ao\xCC\x88");
-testMe("\u{1000}\u{1F7C9}\u{12043}𒁂\u{12042}\u{12030}\u{12031}");
+echo '<pre>';
+testMe('Hello from github', 'buhtig morf olleH');
+testMe("の\r\n", "\r\nの");
+testMe('', '');
+testMe('1', '1');
+testMe('ab', 'ba');
+testMe('тест по UTF8', '8FTU оп тсет');
+testMe('اهلا بك', 'كب الها');
+testMe('👹👺💀👻', '👻💀👺👹');
+testMe("abca\xCC\x8Ao\xCC\x88", 'öåcba');
+testMe("\u{1000}\u{1F7C9}\u{12043}𒁂\u{12042}\u{12030}\u{12031}\u{10ffff}", '􏿿𒀱𒀰𒁂𒁂𒁃🟉က');
 echo 'Vertically-stacked characters:';
-testMe('Z̤͔ͧ̑̓ä͖̭̈̇lͮ̒ͫǧ̗͚̚o̙̔ͮ̇͐̇');
+testMe('Z̤͔ͧ̑̓ä͖̭̈̇lͮ̒ͫǧ̗͚̚o̙̔ͮ̇͐̇', 'o̙̔ͮ̇͐̇ǧ̗͚̚lͮ̒ͫä͖̭̈̇Z̤͔ͧ̑̓');
 echo 'Right-to-left words:';
-testMe('اختبار النص');
+testMe('اختبار النص', 'صنلا رابتخا');
 echo 'Mixed-direction words:';
-testMe('من left اليمين to الى right اليسار');
+testMe('من left اليمين to الى right اليسار', 'راسيلا thgir ىلا ot نيميلا tfel نم');
 echo 'Mixed-direction characters:';
-testMe('a‭b‮c‭d‮e‭f‮g');
+testMe('a‭b‮c‭d‮e‭f‮g', 'g‮f‭e‮d‭c‮b‭a');
 echo 'Very long characters:';
-testMe('﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽');
+testMe('﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽', '﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽');
+testMe('👭👬⚧⚥⚣⚢⚤', '⚤⚢⚣⚥⚧👬👭');
 echo 'Emoji with skintone variations:';
-testMe('👱👱🏻👱🏼👱🏽👱🏾👱🏿');
+testMe('👱👱🏻👱🏼👱🏽👱🏾👱🏿', '👱🏿👱🏾👱🏽👱🏼👱🏻👱');
 echo 'Emoji with sex variations:';
-testMe('🧟‍♀️🧟‍♂️');
-testMe('👭👬⚧⚥⚣⚢⚤');
+testMe('🧟‍♀️🧟‍♂️', '🧟‍♂️🧟‍♀️');
 echo 'Apple-invented combined emoji:';
-testMe('👨‍❤️‍💋‍👨👩‍👩‍👧‍👦');
+testMe('👨‍❤️‍💋‍👨👩‍👩‍👧‍👦', '👩‍👩‍👧‍👦👨‍❤️‍💋‍👨');
+echo '</pre>';
 ```
 ## TODO: 
 
