@@ -1,5 +1,6 @@
 <?php
 
+use Patchwork\PHP\Shim\Intl;
 use Symfony\Polyfill\Intl\Grapheme\Grapheme;
 
 require_once('vendor/autoload.php');
@@ -74,6 +75,9 @@ function reverse4($str)
  */
 function reverse5($string)
 {
+    if (!extension_loaded('intl')) {
+        return 'intl extension is not loaded';
+    }
     $length = grapheme_strlen($string);
     $ret = [];
     for ($i = 0; $i < $length; $i += 1) {
@@ -89,10 +93,12 @@ function reverse5($string)
  */
 function reverse6($str)
 {
+    if (!extension_loaded('intl')) {
+        return 'intl extension is not loaded';
+    }
     $it = IntlBreakIterator::createCodePointInstance();
     $it->setText($str);
     $ret = '';
-    $pos = 0;
     $prev = 0;
     foreach ($it as $pos) {
         $ret = substr($str, $prev, $pos - $prev) . $ret;
@@ -121,6 +127,28 @@ function reverse7($string)
     return implode(array_reverse($ret));
 }
 
+
+/**
+ * Test patchwork/utf8 library
+ * Fails:
+ *  - Emoji with skintone variations
+ *  - Emoji with sex variations
+ *  - Apple-invented combined emoji
+ *
+ * @param $string
+ * @return string
+ */
+function reverse8($string)
+{
+    \Patchwork\Utf8\Bootup::initAll();
+    $length = Intl::grapheme_strlen($string);
+    $ret = [];
+    for ($i = 0; $i < $length; $i += 1) {
+        $ret[] = Intl::grapheme_substr($string, $i, 1);
+    }
+    return implode(array_reverse($ret));
+}
+
 /**
  * @param $str
  * @param $functionName
@@ -130,7 +158,7 @@ function compareStrings($str, $functionName, $correctReverse)
 {
     $reversed = $functionName($str);
     $testPass = ($reversed === $correctReverse);
-    echo $reversed . (($testPass) ? ' <b style="color:green">PASS</b>' : ' <b style="color:red">FAIL</b>') . PHP_EOL;
+    echo $functionName[-1] . '. ' . $reversed . (($testPass) ? ' <b style="color:green">PASS</b>' : ' <b style="color:red">FAIL</b>') . PHP_EOL;
 }
 
 /**
@@ -144,14 +172,16 @@ function testMe($str, $correctReverse)
     compareStrings($str, 'reverse2', $correctReverse);
     compareStrings($str, 'reverse3', $correctReverse);
     compareStrings($str, 'reverse4', $correctReverse);
-    compareStrings($str, 'reverse5', $correctReverse);
+    compareStrings($str, 'reverse5', $correctReverse); // best candidate
     compareStrings($str, 'reverse6', $correctReverse);
     compareStrings($str, 'reverse7', $correctReverse);
+    compareStrings($str, 'reverse8', $correctReverse);
     echo "----------------------------" . PHP_EOL;
 }
 
 echo '<pre>';
 testMe('Hello from github', 'buhtig morf olleH');
+testMe("の\r\n", "\r\nの");
 testMe('', '');
 testMe('1', '1');
 testMe('ab', 'ba');
@@ -170,11 +200,11 @@ echo 'Mixed-direction characters:';
 testMe('a‭b‮c‭d‮e‭f‮g', 'g‮f‭e‮d‭c‮b‭a');
 echo 'Very long characters:';
 testMe('﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽', '﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽﷽');
+testMe('👭👬⚧⚥⚣⚢⚤', '⚤⚢⚣⚥⚧👬👭');
 echo 'Emoji with skintone variations:';
 testMe('👱👱🏻👱🏼👱🏽👱🏾👱🏿', '👱🏿👱🏾👱🏽👱🏼👱🏻👱');
 echo 'Emoji with sex variations:';
 testMe('🧟‍♀️🧟‍♂️', '🧟‍♂️🧟‍♀️');
-testMe('👭👬⚧⚥⚣⚢⚤', '⚤⚢⚣⚥⚧👬👭');
 echo 'Apple-invented combined emoji:';
 testMe('👨‍❤️‍💋‍👨👩‍👩‍👧‍👦', '👩‍👩‍👧‍👦👨‍❤️‍💋‍👨');
 echo '</pre>';
