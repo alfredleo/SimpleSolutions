@@ -1,0 +1,14 @@
+{
+    "name": "alfredleo/simple-solutions",
+    "description": "This is a test package to check PHP Unicode support.",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alfred",
+            "email": "alfredleo@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
