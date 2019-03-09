@@ -29,8 +29,8 @@ function reverse5($string)
     return implode(array_reverse($ret));
 }
 
-
 echo '<pre>';
+testMe("ŎŏĞğÇçŞşЎўҒғЧчШш‘", "‘шШчЧғҒўЎşŞçÇğĞŏŎ"); // uzbek problematic letters test
 testMe('Hello from github', 'buhtig morf olleH');
 testMe("の\r\n", "\r\nの");
 testMe('', '');
