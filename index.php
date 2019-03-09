@@ -180,6 +180,7 @@ function testMe($str, $correctReverse)
 }
 
 echo '<pre>';
+testMe("ŎŏĞğÇçŞşЎўҒғЧчШш‘", "‘шШчЧғҒўЎşŞçÇğĞŏŎ"); // uzbek problematic letters test
 testMe('Hello from github', 'buhtig morf olleH');
 testMe("の\r\n", "\r\nの");
 testMe('', '');
