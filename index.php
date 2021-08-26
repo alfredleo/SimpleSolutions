@@ -1,6 +1,7 @@
 <?php
 
 use Patchwork\PHP\Shim\Intl;
+use Patchwork\Utf8\Bootup;
 use Symfony\Polyfill\Intl\Grapheme\Grapheme;
 
 require_once('vendor/autoload.php');
@@ -80,10 +81,10 @@ function reverse5($string)
     }
     $length = grapheme_strlen($string);
     $ret = [];
-    for ($i = 0; $i < $length; $i += 1) {
+    for ($i = $length; $i >= 0; $i -= 1) {
         $ret[] = grapheme_substr($string, $i, 1);
     }
-    return implode(array_reverse($ret));
+    return implode($ret);
 }
 
 /**
@@ -140,7 +141,7 @@ function reverse7($string)
  */
 function reverse8($string)
 {
-    \Patchwork\Utf8\Bootup::initAll();
+    Bootup::initAll();
     $length = Intl::grapheme_strlen($string);
     $ret = [];
     for ($i = 0; $i < $length; $i += 1) {
