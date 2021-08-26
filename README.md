@@ -21,12 +21,15 @@ Tests to run:
 // winner function to reverse any string in php
 function reverse5($string)
 {
+    if (!extension_loaded('intl')) {
+        return 'intl extension is not loaded';
+    }
     $length = grapheme_strlen($string);
     $ret = [];
-    for ($i = 0; $i < $length; $i += 1) {
+    for ($i = $length; $i >= 0; $i -= 1) {
         $ret[] = grapheme_substr($string, $i, 1);
     }
-    return implode(array_reverse($ret));
+    return implode($ret);
 }
 
 echo '<pre>';
